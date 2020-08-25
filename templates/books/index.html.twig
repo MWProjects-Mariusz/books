@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Books index{% endblock %}
+
+{% block body %}
+    <h1>Books index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>BookId</th>
+                <th>BookName</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.bookId }}</td>
+                <td>{{ book.bookName }}</td>
+                <td>
+                    <a href="{{ path('books_show', {'bookId': book.bookId}) }}">show</a>
+                    <a href="{{ path('books_edit', {'bookId': book.bookId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('books_new') }}">Create new</a>
+{% endblock %}
